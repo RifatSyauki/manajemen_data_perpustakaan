@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use App\Models\Admin;
 use App\Models\Users;
 use App\Models\Book;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -33,20 +32,30 @@ class DatabaseSeeder extends Seeder
                 'availability' => '3'
             ]
         ];
+
         $users = [
+            [
+                'username' => 'admin',
+                'email' => 'admin@gmail.com',
+                'is_admin' => true,
+                'password' => Hash::make('admin')
+            ],
             [
                 'username' => 'Andi',
                 'email' => 'andi@gmail.com',
+                'is_admin' => false,
                 'password' => Hash::make('andi123')
             ],
             [
                 'username' => 'Budi',
                 'email' => 'budi@gmail.com',
+                'is_admin' => false,
                 'password' => Hash::make('budi123')
             ],
             [
                 'username' => 'Caca',
                 'email' => 'caca@gmail.com',
+                'is_admin' => false,
                 'password' => Hash::make('caca123')
             ]
         ];
@@ -54,11 +63,6 @@ class DatabaseSeeder extends Seeder
         foreach($users as $user) {
             Users::create($user);
         }
-
-        Admin::create([
-            'username' => 'admin',
-            'password' => Hash::make('admin'),
-        ]);
 
         foreach($books as $book){
             Book::create($book);
