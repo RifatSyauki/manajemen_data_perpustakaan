@@ -16,9 +16,9 @@ return new class extends Migration
             $table->string('title');
             $table->string('author');
             $table->string('isbn');
-            $table->string('Publisher');
+            $table->string('publisher');
             $table->unsignedInteger('publication');
-            $table->unsignedInteger('Edition');
+            $table->unsignedInteger('edition');
             $table->char('shelf', length: 3);
             $table->unsignedInteger('availability');
             $table->timestamps();

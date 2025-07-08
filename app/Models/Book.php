@@ -13,9 +13,9 @@ class Book extends Model
         'title',
         'author',
         'isbn',
-        'Publisher',
+        'publisher',
         'publication',
-        'Edition',
+        'edition',
         'shelf',
         'availability'
     ];

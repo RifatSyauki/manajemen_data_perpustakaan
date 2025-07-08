@@ -25,9 +25,9 @@ class DatabaseSeeder extends Seeder
                 'title' => 'Kalkulus',
                 'author' => 'Dale Varberg, Purcell, Edwin J, Rigdon, Steven E',
                 'isbn' => '978-979-033-937-8',
-                'Publisher' => 'Erlangga, 2010 ',
+                'publisher' => 'Erlangga, 2010 ',
                 'publication' => 2010,
-                'Edition' => '9',
+                'edition' => 9,
                 'shelf' => '500',
                 'availability' => '3'
             ]
@@ -38,25 +38,25 @@ class DatabaseSeeder extends Seeder
                 'username' => 'admin',
                 'email' => 'admin@gmail.com',
                 'is_admin' => true,
-                'password' => Hash::make('admin')
+                'password' => bcrypt('admin')
             ],
             [
                 'username' => 'Andi',
                 'email' => 'andi@gmail.com',
                 'is_admin' => false,
-                'password' => Hash::make('andi123')
+                'password' => bcrypt('andi123')
             ],
             [
                 'username' => 'Budi',
                 'email' => 'budi@gmail.com',
                 'is_admin' => false,
-                'password' => Hash::make('budi123')
+                'password' => bcrypt('budi123')
             ],
             [
                 'username' => 'Caca',
                 'email' => 'caca@gmail.com',
                 'is_admin' => false,
-                'password' => Hash::make('caca123')
+                'password' => bcrypt('caca123')
             ]
         ];
 
