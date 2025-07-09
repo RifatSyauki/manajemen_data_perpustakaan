@@ -7,6 +7,14 @@
 </head>
 <body>
 
+<div>
+	<form action="{{ route('book.index') }}" method="GET">
+		@csrf
+		<input type="text" name="search" placeholder="Cari...">
+		<input type="submit" value="CARI">
+	</form>
+</div>
+
 <table style="width: 100%;">
 	<tr style="text-align: left;">
 		<th>Nama Buku</th>

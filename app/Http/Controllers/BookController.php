@@ -7,6 +7,8 @@ use Illuminate\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 
+// use Illuminate\Routing\Controller as BaseController;
+
 class BookController extends Controller
 {
     public function index(Request $request): view
@@ -74,5 +76,29 @@ class BookController extends Controller
         $book->delete();
 
         return redirect()->route('book.index');
+    }
+
+    public function show(Request $request): view
+    {
+        $query = Book::query();
+
+        if($request->has('search') && $request->search != '') {
+            $search = $request->search;
+            $query->where(function ($q) use ($search) {
+                $q->where('title', 'like', '%'.$search.'%')
+                  ->orWhere('author', 'like', '%'.$search.'%')
+                  ->orWhere('isbn', 'like', '%'.$search.'%');
+            });
+        }
+
+        $books = $query->paginate(10);
+        return view('book.dashboard', compact('books'));
+    }
+
+    public function detail($id): view
+    {
+        $book = Book::findOrFail($id);
+
+        return view('book.detail', compact('book'));
     }
 }
