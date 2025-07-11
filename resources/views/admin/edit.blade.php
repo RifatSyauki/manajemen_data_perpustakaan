@@ -7,10 +7,12 @@
 </head>
 <body>
 
-<form action="{{ route('book.update', $book->id) }}" method="POST" enctype="application/json">
+<nav><a href="{{ url()->previous() }}">Back</a></nav>
+
+<form action="{{ route('admin.update', $book->id) }}" method="POST" enctype="application/json">
 	@csrf
 	@method('PUT')
-	<ol style="list-style-type: none;">
+	<ol style="list-style-type: none; padding: 50px;">
 		<li>
 			<label>Nama Buku</label>
 			<input type="text" name="title" value="{{ old('title', $book->title) }}">

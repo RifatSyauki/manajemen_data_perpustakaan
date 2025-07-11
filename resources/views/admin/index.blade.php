@@ -10,18 +10,23 @@
 <body>
 
 <div>
-	<form action="{{ route('book.index') }}" method="GET">
+	<form action="{{ route('admin.index') }}" method="GET">
 		@csrf
 		<input type="text" name="search" placeholder="Cari...">
 		<input type="submit" value="CARI">
 	</form>
 </div>
 
+<form action="{{ route('logout') }}" method="POST">
+    @csrf
+    <button type="submit">Logout</button>
+</form>
+
 <div>
 	<div>
 		<button onclick="showForm()" style="margin-top: 20px;" id="button-add">Add data</button>
 	</div>
-	<form action="{{ route('book.store') }}" method="POST" enctype="application/json" style="display:none;" id="formAdd">
+	<form action="{{ route('admin.store') }}" method="POST" enctype="application/json" style="display:none;" id="formAdd">
 		@csrf
 		<ol style="max-width: 400px; list-style-type: none;">
 			<li>
@@ -79,8 +84,9 @@
 			<td> {!! $book->shelf !!} </td>
 			<td> {!! $book->availability !!} </td>
 			<td style="display: flex;">
-				<a href="{{ route('book.edit', $book->id) }}"><button>edit</button></a>
-				<form action="{{ route('book.destroy', $book->id) }}" method="POST" enctype="application/json">
+				<a href="{{ route('books.show', $book->id) }}"><button>detail</button></a>
+				<a href="{{ route('admin.edit', $book->id) }}"><button>edit</button></a>
+				<form action="{{ route('admin.destroy', $book->id) }}" method="POST" enctype="application/json">
 					@csrf
 					@method('DELETE')
 					<button type="submit">delete</button>

@@ -4,10 +4,16 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Detail Book</title>
+
+<style>
+	li {
+		display: flex;
+	}
+</style>
 </head>
 <body>
 
-<nav><a href="/dashboar">Back</a></nav>
+<nav><a href="{{ url()->previous() }}">Back</a></nav>
 
 <ol style="list-style-type: none; padding: 50px;">
 		<li>

@@ -28,15 +28,27 @@ class AuthController extends Controller
         return view('login');
     }
 
-    function submitLogin(Request $request){
-        $data = $request->only('email', 'password');
+    function submitLogin(Request $request) {
+        $credentials = $request->only('email', 'password');
 
-        if(Auth::attempt($data)) {
+        if(Auth::attempt($credentials)) {
             $request->session()->regenerate();
 
-            return redirect()->route('book.index');
+            if (auth()->user()->is_admin) {
+                return redirect()->intended('/admin');
+            } else {
+                return redirect()->intended('/books');
+            }
         } else {
-            return redirect()->back();
+            return redirect()->route('registration');
         }
+    }
+
+    public function logout(Request $request)
+    {
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        return redirect('/login');
     }
 }
