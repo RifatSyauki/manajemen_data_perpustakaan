@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\Users;
+use App\Models\User;
 use App\Models\Book;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -61,7 +61,7 @@ class DatabaseSeeder extends Seeder
         ];
 
         foreach($users as $user) {
-            Users::create($user);
+            User::create($user);
         }
 
         foreach($books as $book){

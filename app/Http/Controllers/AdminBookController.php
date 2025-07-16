@@ -30,6 +30,17 @@ class AdminBookController extends Controller
 
     public function store(Request $request): RedirectResponse
     {
+        $request->validate([
+            'title' => 'required|string|max:255',
+            'author' => 'required|string|max:255',
+            'isbn' => 'required|string|max:20|unique:books,isbn',
+            'publisher' => 'required|string|max:255',
+            'publication' => 'required|integer|min:1000|max:' . date('Y'),
+            'edition' => 'required|integer|min:1',
+            'shelf' => 'required|string|size:3',
+            'availability' => 'required|integer|min:0',
+        ]);
+
         Book::create([
             'title' => $request->title,
             'author' => $request->author,
@@ -53,6 +64,17 @@ class AdminBookController extends Controller
 
     public function update(Request $request, $id): RedirectResponse
     {
+        $request->validate([
+            'title' => 'required|string|max:255',
+            'author' => 'required|string|max:255',
+            'isbn' => 'required|string|max:20|unique:books,isbn',
+            'publisher' => 'required|string|max:255',
+            'publication' => 'required|integer|min:1000|max:' . date('Y'),
+            'edition' => 'required|integer|min:1',
+            'shelf' => 'required|string|size:3',
+            'availability' => 'required|integer|min:0',
+        ]);
+        
         $book = Book::findOrFail($id);
 
         $book->update([
